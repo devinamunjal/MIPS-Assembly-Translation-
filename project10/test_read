@@ -1,0 +1,25 @@
+#include "spsss.h"
+#include <stdio.h>
+
+void print_spsss_commands(Spsss_commands commands) {
+    Node *current = commands.head;
+
+    while (current != NULL) {
+        printf("Compile Command: %s\n", current->compile_commands);
+        printf("Test Command: %s\n", current->test_commands);
+        printf("---------------\n");
+
+        current = current->next;
+    }
+}
+
+int main() {
+    const char compile_cmds_file[] = "compile_commands.txt";
+    const char test_cmds_file[] = "test_commands.txt";
+
+    Spsss_commands commands_list = read_spsss_commands(compile_cmds_file, test_cmds_file);
+
+    print_spsss_commands(commands_list);
+
+    return 0;
+}
